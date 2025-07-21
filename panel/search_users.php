@@ -1,6 +1,7 @@
 <?php require "./head.php";
 $error = '';
 $searchNull = '';
+require "../assets/connect_to_db.php";
 ?>
 <?php require "./body.php"; ?>
 
@@ -27,18 +28,19 @@ $searchNull = '';
 
     <?php
     if (isset($_POST["submit"])) {
+
         if ($_POST["text"] !== "" && $_POST["field"] !== "") {
 
-            require "../assets/connect_to_db.php";
             $field = $_POST["field"];
             $text = $_POST["text"];
             $sql = "SELECT * FROM `users` WHERE {$field} LIKE ?";
             $stmt = $conn->prepare($sql);
             $stmt->execute(["%$text%"]);
-            $users = $stmt->fetchAll();
+            $users = $stmt->fetchAll(); ?>
 
-            if ($users) {
-                echo '<table class="table table-striped text-center bg-white mt-5">
+        <?php    if ($users) { ?>
+
+                <table class="table table-striped text-center bg-white mt-5">
                       <thead>
                       <tr>
        
@@ -48,39 +50,38 @@ $searchNull = '';
                       <th scope="col">ID</th>
                       </tr>
                       </thead>
-                      <tbody>';
+                      <tbody>
 
 
-                foreach ($users as $user) {
-                    echo "<tr>";
-                   echo "<td >
-                 <a class='btn btn-danger' href ='./delete.php?username={$user['username']} '>
+              <?php  foreach ($users as $user): ?>
+
+                    <tr>
+                   <td >
+                 <a class='btn btn-danger' href ='func/delete.php?id=<?=$user['>
                      <i class='bi bi-trash' ></i >
                  </a >
                  <a class='btn btn-warning' >
                      <i class='bi bi-pencil' ></i >
                  </a >
-             </td >";
-                    echo "<td>" . $user["email"] . "</td>";
-                    echo "<td>" . $user["username"] . "</td>";
-                    echo "<td>" . $user["id"] . "</td>";
-                    echo "</tr>";
+             </td >
+                    <td> <?= $user["email"] ?></td>
+                    <td><?= $user["username"] ?></td>
+                    <td><?= $user["id"] ?></td>
+                    </tr>
 
-
+        <?php endforeach; ?>
 
                 }
-                echo "</tbody>";
-                echo "</table>";
+                </tbody>
+                </table>
+
+
+             <?php
             } else {
                 echo "<h5 class='alert alert-danger m-5 px-3'>کاربری با این مشخصات یافت نشد</h5>";
             }
-
-
-        } else {
-            $error = 'همه فیلدها رو کامل کن';
         }
-    }
-    ?>
+    } ?>
 </section>
 
 

@@ -28,65 +28,65 @@
                             <a href="#">لیست پست ها</a>
                         </li>
                         <li class="submenu-item">
-                            <a href="./new_post.php">ایجاد پست</a>
+                            <a href="new_post.php">ایجاد پست</a>
                         </li>
                         <li class="submenu-item">
-                            <a href="./search.php">ویرایش پست</a>
+                            <a href="search.php">ویرایش پست</a>
                         </li>
                     </ul>
                 </li>
 
-                <li x-data="dropdown" class="sidebar-item">
-                    <div @click="toggle" class="sidebar-link">
-                        <i class="me-2 bi bi-box-seam"></i>
-                        <span>محصولات</span>
-                        <i class="ms-auto bi bi-chevron-down"></i>
-                    </div>
-                    <ul x-show="open" x-transition class="submenu">
-                        <li class="submenu-item">
-                            <a href="./products_index.html">لیست محصولات</a>
-                        </li>
-                        <li class="submenu-item">
-                            <a href="#">ایجاد محصول</a>
-                        </li>
-                        <li class="submenu-item">
-                            <a href="#">ویرایش محصول</a>
-                        </li>
-                    </ul>
-                </li>
+<!--                <li x-data="dropdown" class="sidebar-item">-->
+<!--                    <div @click="toggle" class="sidebar-link">-->
+<!--                        <i class="me-2 bi bi-box-seam"></i>-->
+<!--                        <span>محصولات</span>-->
+<!--                        <i class="ms-auto bi bi-chevron-down"></i>-->
+<!--                    </div>-->
+<!--                    <ul x-show="open" x-transition class="submenu">-->
+<!--                        <li class="submenu-item">-->
+<!--                            <a href="./products_index.html">لیست محصولات</a>-->
+<!--                        </li>-->
+<!--                        <li class="submenu-item">-->
+<!--                            <a href="#">ایجاد محصول</a>-->
+<!--                        </li>-->
+<!--                        <li class="submenu-item">-->
+<!--                            <a href="#">ویرایش محصول</a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </li>-->
 
-                <li x-data="dropdown" class="sidebar-item">
-                    <div @click="toggle" class="sidebar-link">
-                        <i class="me-2 bi bi-basket-fill"></i>
-                        <span>سفارشات</span>
-                        <i class="ms-auto bi bi-chevron-down"></i>
-                    </div>
-                    <ul x-show="open" x-transition class="submenu">
-                        <li class="submenu-item">
-                            <a href="#">لیست سفارشات</a>
-                        </li>
-                        <li class="submenu-item">
-                            <a href="#">سفارشات تایید شده</a>
-                        </li>
-                        <li class="submenu-item">
-                            <a href="#">سفارشات تایید نشده</a>
-                        </li>
-                    </ul>
-                </li>
+<!--                <li x-data="dropdown" class="sidebar-item">-->
+<!--                    <div @click="toggle" class="sidebar-link">-->
+<!--                        <i class="me-2 bi bi-basket-fill"></i>-->
+<!--                        <span>سفارشات</span>-->
+<!--                        <i class="ms-auto bi bi-chevron-down"></i>-->
+<!--                    </div>-->
+<!--                    <ul x-show="open" x-transition class="submenu">-->
+<!--                        <li class="submenu-item">-->
+<!--                            <a href="#">لیست سفارشات</a>-->
+<!--                        </li>-->
+<!--                        <li class="submenu-item">-->
+<!--                            <a href="#">سفارشات تایید شده</a>-->
+<!--                        </li>-->
+<!--                        <li class="submenu-item">-->
+<!--                            <a href="#">سفارشات تایید نشده</a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </li>-->
 
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="#">
-                        <i class="me-2 bi bi-percent"></i>
-                        <span>تخفیف ها</span>
-                    </a>
-                </li>
+<!--                <li class="sidebar-item">-->
+<!--                    <a class="sidebar-link" href="#">-->
+<!--                        <i class="me-2 bi bi-percent"></i>-->
+<!--                        <span>تخفیف ها</span>-->
+<!--                    </a>-->
+<!--                </li>-->
 
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="#">
-                        <i class="me-2 bi bi-chat-right-dots-fill"></i>
-                        <span>تیکت</span>
-                    </a>
-                </li>
+<!--                <li class="sidebar-item">-->
+<!--                    <a class="sidebar-link" href="#">-->
+<!--                        <i class="me-2 bi bi-chat-right-dots-fill"></i>-->
+<!--                        <span>تیکت</span>-->
+<!--                    </a>-->
+<!--                </li>-->
 
                 <li x-data="dropdown" class="sidebar-item">
                     <div @click="toggle" class="sidebar-link">
@@ -96,16 +96,16 @@
                     </div>
                     <ul x-show="open" x-transition class="submenu">
                         <li class="submenu-item">
-                            <a href="./users_list.php">لیست کاربران</a>
+                            <a href="users_list.php">لیست کاربران</a>
                         </li>
                         <li class="submenu-item">
                             <a href="#">ایجاد کاربران</a>
                         </li>
                         <li class="submenu-item">
-                            <a href="./search_users.php">جستجوی کاربران</a>
+                            <a href="search_users.php">جستجوی کاربران</a>
                         </li>
                         <li class="submenu-item">
-                            <a href="./modify_users.php">ویرایش کاربران</a>
+                            <a href="modify_users.php">ویرایش کاربران</a>
                         </li>
                     </ul>
                 </li>

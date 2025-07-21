@@ -13,9 +13,9 @@
 <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
 <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
 
-<script src="./js/charts/chart1.js"></script>
-<script src="./js/charts/chart2.js"></script>
-<script src="./js/alpineComponents.js"></script>
+<script src="js/charts/chart1.js"></script>
+<script src="js/charts/chart2.js"></script>
+<script src="js/alpineComponents.js"></script>
 </body>
 
 </html>

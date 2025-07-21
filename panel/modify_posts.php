@@ -1,9 +1,26 @@
 <?php require "./head.php"; ?>
 <?php require "./body.php"; ?>
 <?php require "../assets/connect_to_db.php"; ?>
+<?php
+session_start();
+$getID = $_GET["id"];
+$x = false;
+if(isset($_POST["edit"])){
+    $title = $_POST["title"];
+    $text = $_POST["text"];
+    $category = $_POST["category"];
+
+    $sql = "UPDATE `posts` SET `title` = ?, `text` = ? , `category_id` = ? WHERE `id` = ?";
+    $UPDATE = $conn -> prepare($sql);
+    $UPDATE -> execute([$title, $text, $category, $getID]);
+    $x = true;
+}
+if ($x == true) {
+    header("location:search.php");
+}
+?>
 
 <?php
-$getID = $_GET["id"];
 $SELECT = $conn -> prepare("SELECT * FROM `posts` WHERE `id` = ? ");
 $SELECT -> execute([$getID]);
 $data = $SELECT -> fetch(PDO::FETCH_ASSOC);
@@ -28,7 +45,6 @@ $data = $SELECT -> fetch(PDO::FETCH_ASSOC);
                     <option value="" selected>دسته بندی مدنظر را انتخاب کنید</option>
 
                     <?php
-
                     $stmt = $conn->query("SELECT * FROM `categories`");
                     $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     foreach ($categories as $category) {
@@ -38,8 +54,6 @@ $data = $SELECT -> fetch(PDO::FETCH_ASSOC);
                         }else{
                             echo "<option value='".$category['id']."'>".$category['description']."</option>";
                         }
-
-//                        echo "<option value='{$category['id']}'> " . $category['description']  . "</option>";
 
                     }
                     ?>
@@ -51,17 +65,6 @@ $data = $SELECT -> fetch(PDO::FETCH_ASSOC);
         </form>
     </section>
 
-<?php
-if(isset($_POST["edit"])){
-    $title = $_POST["title"];
-    $text = $_POST["text"];
-    $category = $_POST["category"];
 
-    $sql = "UPDATE `posts` SET `title` = ?, `text` = ? , `category_id` = ? WHERE `id` = ?";
-    $UPDATE = $conn -> prepare($sql);
-    $UPDATE -> execute([$title, $text, $category, $getID]);
-    header("location:search.php");
-}
-?>
 
 <?php require "./foot.php"; ?>

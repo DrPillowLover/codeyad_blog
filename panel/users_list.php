@@ -34,7 +34,7 @@ $counter = 1;
 
          <tr>
              <td>
-                 <a class="btn btn-danger" href="./delete.php?username=<?=$user['username'] ?>">
+                 <a class="btn btn-danger" href="func/delete.php?username=<?=$user['username'] ?>">
                      <i class="bi bi-trash"></i>
                  </a>
                  <a class="btn btn-warning">

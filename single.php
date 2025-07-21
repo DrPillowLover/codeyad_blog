@@ -90,31 +90,53 @@
 
 
 
-    <?php require "./assets/connect_to_db.php";
-    $stmt = $conn->query("select * from `posts` left join `users` on `posts`.`user_id` = `users`.`id` where `posts`.`id` = 1");
+    <?php
+    require "./assets/connect_to_db.php";
+    $getID = $_GET['id'];
+    $stmt = $conn->prepare("select * from `posts`  where `id` = ? ");
+    $stmt->execute([$getID]);
     $result = $stmt->fetch();
+//    var_dump($result);
+
+    $views = $conn->prepare("INSERT INTO `views` (post_view) VALUE (?)");
+    $views->execute([$getID]);
+
+    $counterViews = $conn -> prepare("SELECT COUNT(*) FROM `views` where `post_view` = ? ");
+    $counterViews->execute([$getID]);
+    $view = $counterViews -> fetch();
     ?>
 
 
     <main style="margin-top: 10rem; margin-bottom: 5rem;">
         <div class="post-container w-100 mx-auto">
             <div class="content bg-white">
-                <h4 class="title"><?php echo $result['title'] ?></h4>
-                <span class="date">نوشته شده توسط <?php echo $result['username'] ?></span>
+                <h4 class="title">
+                    <?php echo $result['title']; ?>
+                </h4>
+                <span class="date">نوشته شده توسط
+                     <?php
+                     $statement = $conn->prepare("SELECT * FROM `users` WHERE id = ?");
+                     $statement -> execute([$result['user_id']]);
+                     $user = $statement ->fetch();
+                     echo $user['username'];
+                     ?>
+                </span>
                 <span class="author">
                     <?php
                         echo substr($result['last_updated'] , 12 , 4) . ' / ' . substr($result['last_updated'] , 16). ' / ' . substr($result['last_updated'] ,0,8)
                     ?>
+                </span>
+                <span class="author">
+                    <?= $view[0];?>
                 </span>
 
                 <div class="img w-100">
                     <img src="images/post_img.png" alt="Image" class="w-100 rounded">
                 </div>
 
-                <p class="desc"> <?php echo $result['text']; ?> </p> 
+                <p class="desc"> <?php echo $result['text']; ?> </p>
         </div>
     </main>
-
 
     <footer class="footer">
         <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">

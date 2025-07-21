@@ -15,7 +15,7 @@ session_start();
 // day    substr(x , 12 , 4)
 // string month    substr(x , 16)
 
-require "./assets/connect_to_db.php";
+//require "./assets/connect_to_db.php";
 //$stmt = $conn -> query("select * from posts");
 //$res = $stmt -> fetchAll();
 //foreach ($res as $post){
@@ -23,7 +23,15 @@ require "./assets/connect_to_db.php";
 //}
 
 
-print_r($_SESSION);
+require "./assets/connect_to_db.php";
+$getID = $_GET['id'];
+//$stmt = $conn->prepare("select * from `posts` left join `users` on `posts`.`user_id` = `users`.`id` where `posts`.`id` = ? ");
+$sql = " select * from posts where id = ? ";
+$stmt = $conn -> prepare($sql);
+$stmt->execute([$getID]);
+$result = $stmt->fetchAll();
+var_dump($result);
+
 
 ?>
 </pre>
