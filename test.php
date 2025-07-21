@@ -2,7 +2,9 @@
 <?php
 
 $git = "git remote add origin https://github.com/DrPillowLover/codeyad_blog.git";
+$git_push = 'git pull origin master';
 $git_push = "git push -u origin master";
+$git_PUSH = "git push -f origin master";
 
 session_start();
 
