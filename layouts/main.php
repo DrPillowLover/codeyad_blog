@@ -14,11 +14,12 @@
                     <!--                    <li><a href="#"><img src="assets/Img/cati/img_4.jpg" class="ml-2" /><span>پزشکی (3)</span></a></li>-->
                     <?php $cats = getCats(); ?>
                     <?php foreach ($cats as $cat) : ?>
-                        <li>
-                            <a href="#">
+                        <li class="d-flex justify-content-between align-items-center">
+                            <a href="categories.php?category=<?=$cat->id?>" target="_blank">
                                 <img src="assets/Img/cati/img_4.jpg" class="ml-2"/>
                                 <span><?= $cat->title ?></span>
                             </a>
+                            <span><?= countArticles($cat->id) ?></span>
                         </li>
                     <?php endforeach; ?>
                 </ul>
@@ -74,7 +75,8 @@
                                     <?= limit_words($art->body, 25) . '...' ?>
                                 </p>
                                 <div class="mt-2 text-center">
-                                    <a href="single.php?id=<?= $art->id ?>" class="card-link text-primary">ادامه مطلب</a>
+                                    <a href="single.php?id=<?= $art->id ?>" class="card-link text-primary">ادامه
+                                        مطلب</a>
                                 </div>
                             </div>
                         </div>
@@ -87,13 +89,35 @@
             <div class="row mt-3">
                 <div class="col-12 text-center mx-auto">
                     <ul class="pagination  justify-content-center">
+
                         <li class="page-item"><a class="page-link" href="index.php">«</a></li>
+
                         <?php
+                        if (isset($_GET['page'])) {
+                            $page = $_GET['page'];
+                        } else {
+                            $page = 1;
+                        }
                         $numberOfTotalPages = numberOfPages();
-                        for( $i=1 ; $i<=$numberOfTotalPages ; $i++ ) : ?>
-                            <li class="page-item"><a class="page-link" href="index.php?page=<?=$i?>"><?=$i?></a></li>
+                        ?>
+
+
+                        <?php for ($i = 1; $i <= $numberOfTotalPages; $i++) : ?>
+
+                            <?php if ($i > $page + 2 || $i < $page - 2) { ?>
+                                <li class="page-item">
+                                    <a class="page-link d-none" href="index.php?page=<?= $i ?>"><?= $i ?></a>
+                                </li>
+                            <?php } else { ?>
+
+                                <li class="page-item">
+                                    <a class="page-link" href="index.php?page=<?= $i ?>"><?= $i ?></a>
+                                </li>
+
+                            <?php } ?>
                         <?php endfor; ?>
-                        <li class="page-item"><a class="page-link" href="#">»</a></li>
+                        <li class="page-item"><a class="page-link"
+                                                 href="index.php?page=<?= $numberOfTotalPages ?>">»</a></li>
                     </ul>
                 </div>
             </div>

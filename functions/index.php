@@ -8,7 +8,7 @@ function getCats()
     global $conn;
     $stmt = $conn->prepare($sql);
     $stmt->execute();
-    return $result = $stmt->fetchAll();
+    return $stmt->fetchAll();
 }
 
 function getArticlesForNav()
@@ -17,7 +17,7 @@ function getArticlesForNav()
     global $conn;
     $stmt = $conn->prepare($sql);
     $stmt->execute();
-    return $result = $stmt->fetchAll();
+    return $stmt->fetchAll();
 }
 
 
@@ -25,28 +25,31 @@ function getArticles()
 {
     if (isset($_GET['page'])) {
         $page = $_GET['page'];
-    }else{
+    } else {
         $page = 1;
     }
-    $results_per_page = 2;
-    $start_from = ($page-1) * $results_per_page;
+//    1/2
+    $results_per_page = 1;
+    $start_from = ($page - 1) * $results_per_page;
     $sql = "SELECT * FROM `articles` ORDER BY `id` DESC LIMIT $start_from, $results_per_page";
     global $conn;
     $stmt = $conn->prepare($sql);
     $stmt->execute();
-    return  $stmt->fetchAll();
+    return $stmt->fetchAll();
 }
 
 function numberOfPages()
 {
-     $results_per_page = 2;
+//    2/2
+    $results_per_page = 1;
     global $conn;
     $sql = "SELECT * FROM `articles`";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
-    $numberOfRow =  $stmt->rowCount();
-    return ceil($numberOfRow/$results_per_page);
+    $numberOfRow = $stmt->rowCount();
+    return ceil($numberOfRow / $results_per_page);
 }
+
 function getCatTitle($id)
 {
     global $conn;
@@ -70,9 +73,19 @@ function getArticleById($id)
     return $stmt->fetch();
 }
 
+function countArticles($category_id)
+{
+    $sql = "SELECT COUNT(*) FROM `articles` WHERE `category_id` = ?";
+    global $conn;
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$category_id]);
+    return $stmt->fetchColumn();
 
+//    $sql2 = "select `title` from categories where `id` = ?";
+//    $stmt2 = $conn->prepare($sql2);
+//    $stmt2->execute([$category_id]);
 
-
+}
 
 
 ?>
