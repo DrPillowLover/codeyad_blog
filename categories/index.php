@@ -1,8 +1,8 @@
 <?php
-require "./functions/DB.php";
-require "./functions/http.php";
+require "../functions/DB.php";
+require "../functions/http.php";
 global $conn;
-require "./functions/index.php";
+require "../functions/cats.php";
 require "layouts/head.php";
 require "layouts/header.php";
 require "layouts/breadcrumb.php";
